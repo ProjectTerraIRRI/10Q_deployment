@@ -9,7 +9,7 @@ import matplotlib.pyplot as plt
 
 import numpy as np
 import pandas as pd
-# import shap
+import shap
 import pickle
 import kmodes
 from catboost import *
