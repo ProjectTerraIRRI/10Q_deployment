@@ -141,12 +141,21 @@ if st.button('Show Fertilizer ranges'):
     st.success(f'Potassium (K): {p_K-K_range:.2f} - {p_K+K_range:.2f} kg/ha')
     
 if st.button('Show SHAP plots'):
-    test = [yield_1*yield_2, season, method, cluster]
+    test = [season, source_up, source_prev, method, growth_ops, var_type,
+            crops, yield_1*yield_2, rate, organic, cluster]
     X_ho = pd.DataFrame(test).T
-    col_names = ['RCM Normal Yield t/ha in 14% MC',
-             'Growing season', 
-             'RCM Harvesting Method',
-             'cluster']
+    col_names = ['Growing season',
+                 'Source of rice seeds for the upcoming season',
+                 'Source of rice seeds in the previous season',
+                 'RCM Harvesting Method',
+                 'RCM Growth duration if not in the list',
+                 'RCM Variety type',
+                 'Crop grown before rice',
+                 'RCM Normal Yield t/ha in 14% MC',
+                 'RCM Seed rate in kg/ha',
+                 'organic fertilizer weight/ha',
+                 'cluster'
+]
     X_ho.columns = col_names
     figN = shap.force_plot(base_value=shap_explainer.base_values[1],
                                shap_values= explainer.shap_values(X_ho),
