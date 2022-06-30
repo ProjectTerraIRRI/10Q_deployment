@@ -32,23 +32,23 @@ loaded_model_K = pickle.load(open('assets/catboost_K.pickle', 'rb'))
 # In[ ]:
 
 
-# #N
-# with open('assets/explainer_N.pkl', 'rb') as f:
-#      explainer = pickle.load(f)
-# with open('assets/shap_explainer_N.pkl', 'rb') as f:
-#      shap_explainer = pickle.load(f)
+#N
+with open('assets/explainer_N.pkl', 'rb') as f:
+     explainer = pickle.load(f)
+with open('assets/shap_explainer_N.pkl', 'rb') as f:
+     shap_explainer = pickle.load(f)
         
-# #P
-# with open('assets/explainer_P.pkl', 'rb') as f:
-#      explainer_P = pickle.load(f)
-# with open('assets/shap_explainer_P.pkl', 'rb') as f:
-#      shap_explainer_P = pickle.load(f)
+#P
+with open('assets/explainer_P.pkl', 'rb') as f:
+     explainer_P = pickle.load(f)
+with open('assets/shap_explainer_P.pkl', 'rb') as f:
+     shap_explainer_P = pickle.load(f)
         
-# #K
-# with open('assets/explainer_K.pkl', 'rb') as f:
-#      explainer_K = pickle.load(f)
-# with open('assets/shap_explainer_K.pkl', 'rb') as f:
-#      shap_explainer_K = pickle.load(f)
+#K
+with open('assets/explainer_K.pkl', 'rb') as f:
+     explainer_K = pickle.load(f)
+with open('assets/shap_explainer_K.pkl', 'rb') as f:
+     shap_explainer_K = pickle.load(f)
 
 
 # In[ ]:
@@ -140,43 +140,43 @@ if st.button('Show Fertilizer ranges'):
     st.success(f'Phosphorus (P): {p_P-P_range:.2f} - {p_P+P_range:.2f} kg/ha')
     st.success(f'Potassium (K): {p_K-K_range:.2f} - {p_K+K_range:.2f} kg/ha')
     
-# if st.button('Show SHAP plots'):
-#     test = [yield_1*yield_2, season, method, cluster]
-#     X_ho = pd.DataFrame(test).T
-#     col_names = ['RCM Normal Yield t/ha in 14% MC',
-#              'Growing season', 
-#              'RCM Harvesting Method',
-#              'cluster']
-#     X_ho.columns = col_names
-#     figN = shap.force_plot(base_value=shap_explainer.base_values[1],
-#                                shap_values= explainer.shap_values(X_ho),
-#                                feature_names=col_names,
-#                                out_names='Nitrogen',
-#                                matplotlib=True,
-#                                figsize=(10, 3),
-#                                show=False
-#                            )
-#     figP = shap.force_plot(base_value=shap_explainer_P.base_values[1],
-#                                shap_values= explainer_P.shap_values(X_ho),
-#                                feature_names=col_names,
-#                                out_names='Phosphorus',
-#                                matplotlib=True,
-#                                figsize=(10, 3),
-#                                show=False
-#                            )
-#     figK = shap.force_plot(base_value=shap_explainer_K.base_values[1],
-#                                shap_values= explainer_K.shap_values(X_ho),
-#                                feature_names=col_names,
-#                                out_names='Potassium',
-#                                matplotlib=True,
-#                                figsize=(10, 3),
-#                                show=False
-#                            )
-#     st.success('SHAP plots show the contribution of each farm characteristic to '
-#             "the prediction. Red bars indicate a decline from the model's average value, "
-#              'while blue bars indicate an increase. '
-#              'Actual prediction is in bold')
-#     st.pyplot(figN, use_container_width=True)
-#     st.pyplot(figP, use_container_width=True)
-#     st.pyplot(figK, use_container_width=True)
+if st.button('Show SHAP plots'):
+    test = [yield_1*yield_2, season, method, cluster]
+    X_ho = pd.DataFrame(test).T
+    col_names = ['RCM Normal Yield t/ha in 14% MC',
+             'Growing season', 
+             'RCM Harvesting Method',
+             'cluster']
+    X_ho.columns = col_names
+    figN = shap.force_plot(base_value=shap_explainer.base_values[1],
+                               shap_values= explainer.shap_values(X_ho),
+                               feature_names=col_names,
+                               out_names='Nitrogen',
+                               matplotlib=True,
+                               figsize=(10, 3),
+                               show=False
+                           )
+    figP = shap.force_plot(base_value=shap_explainer_P.base_values[1],
+                               shap_values= explainer_P.shap_values(X_ho),
+                               feature_names=col_names,
+                               out_names='Phosphorus',
+                               matplotlib=True,
+                               figsize=(10, 3),
+                               show=False
+                           )
+    figK = shap.force_plot(base_value=shap_explainer_K.base_values[1],
+                               shap_values= explainer_K.shap_values(X_ho),
+                               feature_names=col_names,
+                               out_names='Potassium',
+                               matplotlib=True,
+                               figsize=(10, 3),
+                               show=False
+                           )
+    st.success('SHAP plots show the contribution of each farm characteristic to '
+            "the prediction. Red bars indicate a decline from the model's average value, "
+             'while blue bars indicate an increase. '
+             'Actual prediction is in bold')
+    st.pyplot(figN, use_container_width=True)
+    st.pyplot(figP, use_container_width=True)
+    st.pyplot(figK, use_container_width=True)
 
