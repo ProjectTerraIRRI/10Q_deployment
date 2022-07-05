@@ -142,7 +142,7 @@ if st.button('Show Fertilizer ranges'):
     
 if st.button('Show SHAP plots'):
     test = [season, source_up, source_prev, method, growth_ops, var_type,
-            crops, yield_1*yield_2, rate, organic, cluster]
+            crops, yield_1*yield_2/1_000, rate, organic, cluster]
     X_ho = pd.DataFrame(test).T
     col_names = ['Growing season',
                  'Source of rice seeds for the upcoming season',
