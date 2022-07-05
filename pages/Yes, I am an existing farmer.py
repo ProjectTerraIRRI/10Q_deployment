@@ -127,7 +127,7 @@ source_prev = st.selectbox("Where did you get the seeds for this "
 
 if st.button('Show Fertilizer ranges'):
     test = [season, source_up, source_prev, method, growth_ops, var_type,
-            crops, yield_1*yield_2, rate, organic, cluster]
+            crops, yield_1*yield_2/1_000, rate, organic, cluster]
     N_range = 4.0
     P_range = 1.2
     K_range = 2.3
